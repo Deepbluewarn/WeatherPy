@@ -3,14 +3,13 @@ import requests
 from datetime import datetime
 from yaspin import yaspin
 from dotenv import load_dotenv
-from tools.translator import api_err_translator
+from weatherpy.tools.translator import api_err_translator
 
 load_dotenv()
 
 # 기상청 단기 예보 조회 API 호출
 # 오늘 날짜를 기준으로 단기 예보 정보를 가져옵니다.
 
-@yaspin(text="동네 단기 예보 정보를 가져오는 중입니다..", color="blue")
 def getShortTermWeatherInfo():
     url = os.environ.get('API_ST_BASE_URL') + '/getVilageFcst'
     date = datetime.now().strftime('%Y%m%d')
@@ -26,12 +25,12 @@ def getShortTermWeatherInfo():
     }
 
     try:
-        res = requests.get(url, params=params, timeout=5)
+        res = requests.get(url, params=params, timeout=4)
     except requests.exceptions.RequestException as e:
-        raise Exception('API 호출 시간 초과. error code: ', e)
+        raise Exception('API 호출 시간 초과.')
 
     if(res.status_code != 200):
-        raise Exception('API 호출에 실패했습니다. error code: ', res.status_code)
+        raise Exception('API 호출에 실패했습니다.')
     res_json = res.json()
     result_code = res_json['response']['header']['resultCode']
 

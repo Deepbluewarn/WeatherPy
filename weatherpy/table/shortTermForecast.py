@@ -1,14 +1,14 @@
 from datetime import datetime
-from tools.translator import SKY_translator, weekday_translator
+from weatherpy.tools.translator import SKY_translator, weekday_translator
 import pandas as pd
 from collections import Counter
 from rich.console import Console
 from rich.table import Table
-from api.short_term.shortTerm import getShortTermWeatherInfo
+from weatherpy.api.short_term.shortTerm import getShortTermWeatherInfo
 
 # 단기 예보를 조회한 다음 결과를 테이블로 출력
 
-def tableSTFcst():
+def tableSTFcst() -> Table:
     res = getShortTermWeatherInfo()
     items = res['response']['body']['items']['item']
 
@@ -98,5 +98,4 @@ def tableSTFcst():
     except Exception as e:
         table.add_row(e)
 
-    console = Console()
-    console.print(table)
+    return table
