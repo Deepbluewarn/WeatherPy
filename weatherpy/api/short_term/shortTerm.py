@@ -1,7 +1,6 @@
 import os
 import requests
 from datetime import datetime
-from yaspin import yaspin
 from dotenv import load_dotenv
 from weatherpy.tools.translator import api_err_translator
 
