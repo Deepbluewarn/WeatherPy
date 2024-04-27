@@ -7,7 +7,7 @@ from rich.layout import Layout
 from rich.panel import Panel
 from rich.table import Table
 from time import sleep
-from weatherpy.table.shortTermForecast import tableSTFcst
+from table.shortTermForecast import tableSTFcst
 
 console = Console()
 
@@ -50,21 +50,22 @@ class Header:
         )
         return Panel(grid, style="white on blue")
 
-layout = make_layout()
-layout["header"].update(Header())
-layout["body"].update(Panel('', title='날씨 정보 조회', border_style="blue"))
-layout['side'].update(Panel('', title="단기 예보 조회", border_style="blue"))
-layout["footer"].update(Panel('ChatGPT AI 추천', border_style="blue"))
+def initScreen():
+    layout = make_layout()
+    layout["header"].update(Header())
+    layout["body"].update(Panel('', title='날씨 정보 조회', border_style="blue"))
+    layout['side'].update(Panel('', title="단기 예보 조회", border_style="blue"))
+    layout["footer"].update(Panel('ChatGPT AI 추천', border_style="blue"))
 
-with Live(layout, refresh_per_second=1, screen=True) as live:
-    while True:
-        try:
-            new_panel = make_st_fcst_panel()
-            layout['side'].update(new_panel)
-        except Exception as e:
-            old_panel = layout['side'].renderable
-            old_panel.title = f'단기 예보 조회'
-            old_panel.subtitle = f'에러 발생: {e}'
-            old_panel.border_style = 'red'
-            layout["side"].update(old_panel)
-        sleep(4)
+    with Live(layout, refresh_per_second=1, screen=True) as live:
+        while True:
+            try:
+                new_panel = make_st_fcst_panel()
+                layout['side'].update(new_panel)
+            except Exception as e:
+                old_panel = layout['side'].renderable
+                old_panel.title = f'단기 예보 조회'
+                old_panel.subtitle = f'에러 발생: {e}'
+                old_panel.border_style = 'red'
+                layout["side"].update(old_panel)
+            sleep(4)

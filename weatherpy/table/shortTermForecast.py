@@ -1,10 +1,10 @@
 from datetime import datetime
-from weatherpy.tools.translator import SKY_translator, weekday_translator
+from tools.translator import SKY_translator, weekday_translator
 import pandas as pd
 from collections import Counter
 from rich.console import Console
 from rich.table import Table
-from weatherpy.api.short_term.shortTerm import getShortTermWeatherInfo
+from api.short_term.shortTerm import getShortTermWeatherInfo
 
 # 단기 예보를 조회한 다음 결과를 테이블로 출력
 

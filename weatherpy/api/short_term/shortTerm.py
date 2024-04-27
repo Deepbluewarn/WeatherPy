@@ -2,7 +2,7 @@ import os
 import requests
 from datetime import datetime
 from dotenv import load_dotenv
-from weatherpy.tools.translator import api_err_translator
+from tools.translator import api_err_translator
 
 load_dotenv()
 
