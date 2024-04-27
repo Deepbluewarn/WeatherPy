@@ -1,6 +1,7 @@
 from rich import print
 import json
 from rich.prompt import Prompt
+import fullscreen.fullscreen as fs
 
 config = {}
 init = False
@@ -25,4 +26,5 @@ if init == True:
         json.dump(config, f)
 
 if __name__ == "__main__": 
+    fs.initScreen()
     print("WeatherPy is running...")
