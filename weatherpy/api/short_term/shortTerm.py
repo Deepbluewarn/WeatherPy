@@ -3,6 +3,7 @@ import requests
 from datetime import datetime
 from dotenv import load_dotenv
 from tools.translator import api_err_translator
+from tools.config import getUserConfig
 
 load_dotenv()
 
@@ -10,6 +11,7 @@ load_dotenv()
 # 오늘 날짜를 기준으로 단기 예보 정보를 가져옵니다.
 
 def getShortTermWeatherInfo():
+    config = getUserConfig()
     url = os.environ.get('API_ST_BASE_URL') + '/getVilageFcst'
     date = datetime.now().strftime('%Y%m%d')
     params = {
@@ -19,8 +21,8 @@ def getShortTermWeatherInfo():
         'dataType' : 'JSON', 
         'base_date' : date, 
         'base_time' : '0200', 
-        'nx' : '98',
-        'ny' : '78'
+        'nx' : config['location'][0],
+        'ny' : config['location'][1],
     }
 
     try:
