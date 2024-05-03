@@ -12,6 +12,7 @@ pandas = "^2.2.1"
 rich = "^13.7.1"
 python-dotenv = "^1.0.1"
 openpyxl = "^3.1.2"
+inquirerpy = "^0.3.4"
 
 
 [build-system]
