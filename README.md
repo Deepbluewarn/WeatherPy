@@ -26,6 +26,7 @@ git clone https://github.com/Deepbluewarn/WeatherPy
 poetry 설치 후 프로젝트 디렉토리로 이동한 다음 아래 명령을 실행합니다.
 
 ```bash
+poetry shell
 poetry install
 poetry run python weatherpy/weatherpy.py
 ```
