@@ -8,7 +8,7 @@ from rich.panel import Panel
 from rich.table import Table
 from time import sleep
 from table.shortTermForecast import tableSTFcst
-
+from tools.config import getUserConfig
 console = Console()
 
 def make_layout() -> Layout:
@@ -41,12 +41,13 @@ def make_st_fcst_panel() -> Panel:
 
 class Header:
     def __rich__(self) -> Panel:
+        config = getUserConfig()
         grid = Table.grid(expand=True)
         grid.add_column(justify="center", ratio=1)
         grid.add_column(justify="right")
         grid.add_row(
             "[b]WeatherPy[/b] - 날씨 조회 프로그램",
-            datetime.now().ctime().replace(":", "[blink]:[/]"),
+            f'{config["location_name"]} 기준',
         )
         return Panel(grid, style="white on blue")
 
