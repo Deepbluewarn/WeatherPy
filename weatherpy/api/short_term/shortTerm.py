@@ -10,10 +10,9 @@ load_dotenv()
 # 기상청 단기 예보 조회 API 호출
 # 오늘 날짜를 기준으로 단기 예보 정보를 가져옵니다.
 
-def getShortTermWeatherInfo():
+def getShortTermWeatherInfo(date):
     config = getUserConfig()
     url = os.environ.get('API_ST_BASE_URL') + '/getVilageFcst'
-    date = datetime.now().strftime('%Y%m%d')
     params = {
         'serviceKey' : os.environ.get('SERVICE_KEY'), 
         'pageNo' : '1', 
