@@ -8,6 +8,7 @@ from rich.panel import Panel
 from rich.table import Table
 from time import sleep
 from table.shortTermForecast import tableSTFcst
+from table.live import tableLive
 from tools.config import getUserConfig
 console = Console()
 
@@ -27,9 +28,13 @@ def make_layout() -> Layout:
 
 def make_st_fcst_panel() -> Panel:
     st_fcst_table = tableSTFcst()
+    live_fcst_table = tableLive()
     st_fcst_panel = Panel(
         Align.center(
-            Group("\n", Align.center(st_fcst_table)),
+            Group(
+                live_fcst_table,
+                st_fcst_table,
+            ),
             vertical="middle",
         ),
         box=box.ROUNDED,
